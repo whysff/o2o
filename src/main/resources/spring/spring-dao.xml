@@ -10,15 +10,11 @@
     <context:property-placeholder location="classpath:druid.properties"/>
 
     <!-- 2.配置数据库连接池(选用druid) -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+    <bean id="abstractDataSource" abstract="true" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
+
         <!--配置连接池属性 -->
-
-        <!--配置驱动类名字 -->
         <property name="driverClassName" value="${jdbc.driverClass}" />
-
-        <!-- 基本属性 url、user、password -->
-        <property name="url" value="${jdbc.url}" />
         <property name="username" value="${jdbc.userName}" />
         <property name="password" value="${jdbc.password}" />
 
@@ -65,6 +61,29 @@
         </property>
     </bean>
 
+    <bean id="master" parent="abstractDataSource">
+        <property name="url" value="${jdbc.master.url}" />
+    </bean>
+
+    <bean id="slave" parent="abstractDataSource">
+        <property name="url" value="${jdbc.slave.url}" />
+    </bean>
+
+    <!-- 配置动态数据源 -->
+    <bean id="dynamicDataSource" class="io.whysff.o2o.dao.split.DynamicDataSource">
+        <property name="targetDataSources">
+            <map>
+                <entry value-ref="master" key="master"></entry>
+                <entry value-ref="slave" key="slave"></entry>
+            </map>
+        </property>
+    </bean>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <property name="targetDataSource">
+            <ref bean="dynamicDataSource"/>
+        </property>
+    </bean>
+
     <!-- 慢SQL记录 -->
     <bean id="statFilter" class="com.alibaba.druid.filter.stat.StatFilter">
         <!-- 慢sql时间设置,即执行时间大于200毫秒的都是慢sql -->
@@ -76,35 +95,6 @@
         <property name="statementExecutableSqlLogEnable" value="false" />
     </bean>
 
-<!--    <bean id="master" parent="abstractDataSource">-->
-<!--        &lt;!&ndash; 配置连接池属性 &ndash;&gt;-->
-<!--        <property name="driverClass" value="${jdbc.driver}" />-->
-<!--        <property name="jdbcUrl" value="${jdbc.master.url}" />-->
-<!--        <property name="user" value="${jdbc.username}" />-->
-<!--        <property name="password" value="${jdbc.password}" />-->
-<!--    </bean>-->
-<!--    <bean id="slave" parent="abstractDataSource">-->
-<!--        &lt;!&ndash; 配置连接池属性 &ndash;&gt;-->
-<!--        <property name="driverClass" value="${jdbc.driver}" />-->
-<!--        <property name="jdbcUrl" value="${jdbc.slave.url}" />-->
-<!--        <property name="user" value="${jdbc.username}" />-->
-<!--        <property name="password" value="${jdbc.password}" />-->
-<!--    </bean>-->
-<!--    &lt;!&ndash; 配置动态数据源，这儿targetDataSources就是路由数据源所对应的名称 &ndash;&gt;-->
-<!--    <bean id="dynamicDataSource" class="com.imooc.o2o.dao.split.DynamicDataSource">-->
-<!--        <property name="targetDataSources">-->
-<!--            <map>-->
-<!--                <entry value-ref="master" key="master"></entry>-->
-<!--                <entry value-ref="slave" key="slave"></entry>-->
-<!--            </map>-->
-<!--        </property>-->
-<!--    </bean>-->
-<!--    <bean id="dataSource"-->
-<!--          class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">-->
-<!--        <property name="targetDataSource">-->
-<!--            <ref bean="dynamicDataSource" />-->
-<!--        </property>-->
-<!--    </bean>-->
 
     <!-- 3.配置SqlSessionFactory对象 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
