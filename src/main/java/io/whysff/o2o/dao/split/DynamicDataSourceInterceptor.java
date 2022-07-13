@@ -5,9 +5,9 @@ import org.apache.ibatis.executor.keygen.SelectKeyGenerator;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.plugin.Invocation;
-import org.apache.ibatis.plugin.Plugin;
+import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
@@ -20,6 +20,9 @@ import java.util.Properties;
  * @author lxstart  Email:liuxuan1021@126.com
  * @create 2022/07/13
  */
+@Intercepts({ @Signature(type = Executor.class, method = "update", args = { MappedStatement.class, Object.class }),
+        @Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class,
+                RowBounds.class, ResultHandler.class }) })
 public class DynamicDataSourceInterceptor implements Interceptor {
 
     private static Logger logger = LoggerFactory.getLogger(DynamicDataSourceInterceptor.class);
