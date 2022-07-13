@@ -19,5 +19,9 @@
         <!-- 以包为单位，把包下所有的类型设置为默认的类型别名，即类名且不区分大小写 -->
         <package name="io.whysff.o2o.entity"/>
     </typeAliases>
+    
+    <plugins>
+        <plugin interceptor="io.whysff.o2o.dao.split.DynamicDataSourceInterceptor"></plugin>
+    </plugins>
 
 </configuration>
