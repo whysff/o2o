@@ -51,14 +51,14 @@
         <property name="maxOpenPreparedStatements" value="${jdbc.maxOpenPreparedStatements}" />
 
         <!-- 配置监控统计拦截的filters，去掉后监控界面sql无法统计 开启web监控、开启sql防火墙 -->
-        <property name="filters" value="${jdbc.filters}" />
+<!--        <property name="filters" value="${jdbc.filters}" />-->
 
-        <property name="proxyFilters">
-            <list>
-                <ref bean="logFilter" />
-                <ref bean="statFilter" />
-            </list>
-        </property>
+<!--        <property name="proxyFilters">-->
+<!--            <list>-->
+<!--                <ref bean="logFilter" />-->
+<!--                <ref bean="statFilter" />-->
+<!--            </list>-->
+<!--        </property>-->
     </bean>
 
     <bean id="master" parent="abstractDataSource">
