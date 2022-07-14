@@ -31,7 +31,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream, String fileName) throws ShopOperationException {
+    public ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream, String fileName) throws ShopOperationException{
         if (shop == null || shop.getShopId() == null) {
             return new ShopExecution(ShopStateEnum.NULL_SHOP);
         } else {
@@ -44,17 +44,17 @@ public class ShopServiceImpl implements ShopService {
                     }
                     addShopImg(shop,shopImgInputStream,fileName);
                 }
-                // 2.更新店铺信息
+                // 2.修改店铺信息
                 shop.setLastEditTime(new Date());
-                int effectedNum = shopDao.updateShop(shop);
-                if (effectedNum <= 0) {
+                int effectNum = shopDao.updateShop(shop);
+                if (effectNum <= 0) {
                     return new ShopExecution(ShopStateEnum.INNER_ERROR);
                 } else {
                     shop = shopDao.queryByShopId(shop.getShopId());
-                    return new ShopExecution(ShopStateEnum.SUCCESS,shop);
+                    return new ShopExecution(ShopStateEnum.SUCCESS, shop);
                 }
             } catch (Exception e) {
-                throw new ShopOperationException("modifyShop error：" + e.getMessage());
+                throw  new ShopOperationException("modifyShop error:" + e.getMessage());
             }
         }
     }

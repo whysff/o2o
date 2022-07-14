@@ -21,7 +21,7 @@ import java.util.Random;
  * @create 2022/06/26
  */
 public class ImageUtil {
-    private static String basePath = Paths.get("src", "main","resources").toString();
+    private static String basePath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
 
     private static final SimpleDateFormat  sDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 
