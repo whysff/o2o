@@ -7,6 +7,15 @@ import io.whysff.o2o.entity.Shop;
  * @create 2022/07/12
  */
 public interface ShopDao {
+
+    /**
+     * 根据shopId查询店铺
+     *
+     * @param shopId
+     * @return shop
+     */
+    Shop queryByShopId(Long shopId);
+
     /**
      * 新增店铺
      *
