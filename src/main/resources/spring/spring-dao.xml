@@ -84,16 +84,16 @@
         </property>
     </bean>
 
-    <!-- 慢SQL记录 -->
-    <bean id="statFilter" class="com.alibaba.druid.filter.stat.StatFilter">
-        <!-- 慢sql时间设置,即执行时间大于200毫秒的都是慢sql -->
-        <property name="slowSqlMillis" value="5" />
-        <property name="logSlowSql" value="true" />
-    </bean>
+<!--    &lt;!&ndash; 慢SQL记录 &ndash;&gt;-->
+<!--    <bean id="statFilter" class="com.alibaba.druid.filter.stat.StatFilter">-->
+<!--        &lt;!&ndash; 慢sql时间设置,即执行时间大于200毫秒的都是慢sql &ndash;&gt;-->
+<!--        <property name="slowSqlMillis" value="5" />-->
+<!--        <property name="logSlowSql" value="true" />-->
+<!--    </bean>-->
 
-    <bean id="logFilter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
-        <property name="statementExecutableSqlLogEnable" value="false" />
-    </bean>
+<!--    <bean id="logFilter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">-->
+<!--        <property name="statementExecutableSqlLogEnable" value="false" />-->
+<!--    </bean>-->
 
 
     <!-- 3.配置SqlSessionFactory对象 -->
