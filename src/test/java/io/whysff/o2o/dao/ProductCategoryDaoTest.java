@@ -48,4 +48,10 @@ public class ProductCategoryDaoTest extends BaseTest {
         int count = productCategoryDao.batchInsertProductCategory(productCategoryList);
         assertEquals(3,count);
     }
+
+    @Test
+    public void testDeleteProductCategory() {
+        int count = productCategoryDao.deleteProductCategory(15, 1);
+        assertEquals(1,count);
+    }
 }
