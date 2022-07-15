@@ -6,7 +6,7 @@ package io.whysff.o2o.exceptions;
  */
 public class ShopOperationException extends RuntimeException{
 
-    static final long serialVersionUID = 261486745766939L;
+    static final long serialVersionUID = 261486745733939L;
     public ShopOperationException(String msg) {
         super(msg);
     }

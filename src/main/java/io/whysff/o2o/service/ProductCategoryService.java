@@ -1,6 +1,8 @@
 package io.whysff.o2o.service;
 
+import io.whysff.o2o.dto.ProductCategoryExection;
 import io.whysff.o2o.entity.ProductCategory;
+import io.whysff.o2o.exceptions.ProductCategoryOperationException;
 
 import java.util.List;
 
@@ -17,4 +19,14 @@ public interface ProductCategoryService {
      * @return List<ProductCategory>
      */
     List<ProductCategory> getProductCategoryList(Long shopId);
+
+    /**
+     * 批量添加商品类别
+     *
+     * @param productCategoryList
+     * @return
+     * @throws ProductCategoryOperationException
+     */
+    ProductCategoryExection batchAddProductCategory(List<ProductCategory> productCategoryList)
+            throws ProductCategoryOperationException;
 }
