@@ -28,6 +28,7 @@ public class ShopServiceImpl implements ShopService {
     private ShopDao shopDao;
 
     @Override
+    @Transactional
     public ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize) {
         int rowIndex = PageCalculator.calculateRowIndex(pageIndex,pageSize);
         List<Shop> shopList = shopDao.queryShopList(shopCondition, rowIndex, pageSize);
@@ -43,11 +44,13 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    @Transactional
     public Shop getByShopId(Long shopId) {
         return shopDao.queryByShopId(shopId);
     }
 
     @Override
+    @Transactional
     public ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream, String fileName) throws ShopOperationException{
         if (shop == null || shop.getShopId() == null) {
             return new ShopExecution(ShopStateEnum.NULL_SHOP);
