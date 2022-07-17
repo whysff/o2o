@@ -1,6 +1,7 @@
 package io.whysff.o2o.controller.shopadmin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.whysff.o2o.dto.ImageHolder;
 import io.whysff.o2o.dto.ShopExecution;
 import io.whysff.o2o.entity.Area;
 import io.whysff.o2o.entity.PersonInfo;
@@ -126,9 +127,10 @@ public class ShopManagementController {
             ShopExecution se = null;
             try {
                 if (shopImg == null) {
-                    se = shopService.modifyShop(shop, null,null);
+                    se = shopService.modifyShop(shop, null);
                 } else {
-                    se = shopService.modifyShop(shop, shopImg.getInputStream(),shopImg.getOriginalFilename());
+                    ImageHolder imageHolder = new ImageHolder(shopImg.getOriginalFilename(),shopImg.getInputStream());
+                    se = shopService.modifyShop(shop, imageHolder);
                 }
                 if (se.getState() == ShopStateEnum.SUCCESS.getState()){
                     modelMap.put("success",true);
@@ -231,7 +233,8 @@ public class ShopManagementController {
             shop.setOwner(owner);
             ShopExecution se = null;
             try {
-                se = shopService.addShop(shop, shopImg.getInputStream(),shopImg.getOriginalFilename());
+                ImageHolder imageHolder = new ImageHolder(shopImg.getOriginalFilename(),shopImg.getInputStream());
+                se = shopService.addShop(shop, imageHolder);
                 if (se.getState() == ShopStateEnum.CHECK.getState()){
                     modelMap.put("success",true);
                     List<Shop> shopList = (List<Shop>) request.getSession().getAttribute("shopList");

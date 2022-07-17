@@ -1,10 +1,9 @@
 package io.whysff.o2o.service;
 
+import io.whysff.o2o.dto.ImageHolder;
 import io.whysff.o2o.dto.ShopExecution;
 import io.whysff.o2o.entity.Shop;
 import io.whysff.o2o.exceptions.ShopOperationException;
-
-import java.io.InputStream;
 
 /**
  * @author lxstart  Email:liuxuan1021@126.com
@@ -39,7 +38,7 @@ public interface ShopService {
      * @return
      * @throws ShopOperationException
      */
-    ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream, String fileName) throws ShopOperationException;
+    ShopExecution modifyShop(Shop shop, ImageHolder thumbnail) throws ShopOperationException;
 
 
     /**
@@ -51,5 +50,5 @@ public interface ShopService {
      * @return
      * @throws ShopOperationException
      */
-    ShopExecution addShop(Shop shop, InputStream shopImgInputStream, String fileName) throws ShopOperationException;
+    ShopExecution addShop(Shop shop, ImageHolder thumbnail) throws ShopOperationException;
 }

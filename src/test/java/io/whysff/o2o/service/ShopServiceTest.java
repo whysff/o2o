@@ -1,6 +1,7 @@
 package io.whysff.o2o.service;
 
 import io.whysff.o2o.BaseTest;
+import io.whysff.o2o.dto.ImageHolder;
 import io.whysff.o2o.dto.ShopExecution;
 import io.whysff.o2o.entity.Area;
 import io.whysff.o2o.entity.PersonInfo;
@@ -16,7 +17,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Date;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -50,7 +50,8 @@ public class ShopServiceTest extends BaseTest {
         shop.setShopName("修改后的店铺名称");
         File shopImg  = new File("D:/projectdev/image/dabai.jpg");
         InputStream is = new FileInputStream(shopImg);
-        ShopExecution shopExecution = shopService.modifyShop(shop, is, "dabai.jpg");
+        ImageHolder imageHolder = new ImageHolder("dabai.jpg",is);
+        ShopExecution shopExecution = shopService.modifyShop(shop, imageHolder);
         System.out.println("新的图片地址：" + shopExecution.getShop().getShopImg());
     }
 
@@ -78,7 +79,8 @@ public class ShopServiceTest extends BaseTest {
 
         File shopImg = new File("D:/projectdev/image/xiaohuangren.png");
         InputStream is = new FileInputStream(shopImg);
-        ShopExecution shopExecution = shopService.addShop(shop, is,shopImg.getName());
+        ImageHolder imageHolder = new ImageHolder(shopImg.getName(),is);
+        ShopExecution shopExecution = shopService.addShop(shop, imageHolder);
         assertEquals(ShopStateEnum.CHECK.getState(),shopExecution.getState());
     }
 }
