@@ -68,7 +68,7 @@ public class ProductManagementController {
                 // 取出详情图列表并构建List<ImageHolder>列表对象，最多支持上传6张图片
                 for (int i = 0; i < IMAGEMAXCOUNT; i++) {
                     CommonsMultipartFile productImgFile = (CommonsMultipartFile) multipartRequest
-                            .getFile("prodectImg" + i);
+                            .getFile("productImg" + i);
                     if (productImgFile != null) {
                         // 若取出的第 i 个详情图片文件流不为空，则将其加入详情图列表
                         ImageHolder productImg = new ImageHolder(productImgFile.getOriginalFilename(),
@@ -103,9 +103,7 @@ public class ProductManagementController {
             try {
                 // 从session中获取当前店铺的Id并赋值为product，钱少对前端数据的依赖
                 Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
-                Shop shop = new Shop();
-                shop.setShopId(currentShop.getShopId());
-                product.setShop(shop);
+                product.setShop(currentShop);
                 // 执行添加操作
                 ProductExecution pe = productService.addProduct(product, thumbnail, productImgList);
                 if (pe.getState() == ProductStateEnum.SUCCESS.getState()) {
