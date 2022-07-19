@@ -51,13 +51,20 @@ public class ImageUtil {
      * @return
      */
     public static String generateThumbnail(ImageHolder thumbnail, String targetAddr) {
+        // 获取不重复的随机名
         String realFileName = getRandomFileName();
+        // 获取文件的扩展名如png，jpg等
         String extension = getFileExtention(thumbnail.getImageName());
+        // 如果目标路径不存在，则自动创建
         makeDirPath(targetAddr);
+        // 获取文件存储的相对路径（带文件名）
         String relativeAddr = targetAddr + realFileName + extension;
         logger.debug("current relativeAddr is :" + relativeAddr);
+        // 获取文件要保存的目标路径
         File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
         logger.debug("current complete addr is :" + PathUtil.getImgBasePath() + relativeAddr);
+        logger.debug("basePath is :" + basePath);
+        // 调用Thumbnails生成带有水印的图片
         try {
             Thumbnails.of(thumbnail.getImage()).size(200,200)
                     .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath + "/watermark.jpg")),0.25f)
@@ -66,6 +73,7 @@ public class ImageUtil {
             logger.error(e.toString());
             e.printStackTrace();
         }
+        // 返回图片相对路径地址
         return relativeAddr;
     }
 
