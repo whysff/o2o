@@ -2,7 +2,9 @@ package io.whysff.o2o.dao;
 
 import io.whysff.o2o.BaseTest;
 import io.whysff.o2o.entity.ProductImg;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -15,13 +17,14 @@ import static org.junit.Assert.assertEquals;
  * @author lxstart  Email:liuxuan1021@126.com
  * @create 2022/07/17
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ProductImgDaoTest extends BaseTest {
 
     @Autowired
     private ProductImgDao productImgDao;
 
     @Test
-    public void testBatchInsertProductImg() {
+    public void testABatchInsertProductImg() {
         List<ProductImg> productImgList = new ArrayList<>();
         ProductImg p1 = new ProductImg();
         p1.setImgAddr("test1");
@@ -39,6 +42,12 @@ public class ProductImgDaoTest extends BaseTest {
         productImgList.add(p2);
 
         int effectedNum = productImgDao.batchInsertProductImg(productImgList);
+        assertEquals(2,effectedNum);
+    }
+
+    @Test
+    public void testCDeleteProductImgByProductId() {
+        int effectedNum = productImgDao.deleteProductImgByProductId(1L);
         assertEquals(2,effectedNum);
     }
 }
