@@ -1,6 +1,7 @@
 package io.whysff.o2o.service.impl;
 
 import io.whysff.o2o.dao.ProductCategoryDao;
+import io.whysff.o2o.dao.ProductDao;
 import io.whysff.o2o.dto.ProductCategoryExection;
 import io.whysff.o2o.entity.ProductCategory;
 import io.whysff.o2o.enums.ProductCategoryStateEnum;
@@ -21,6 +22,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Autowired
     private ProductCategoryDao productCategoryDao;
+
+    @Autowired
+    private ProductDao productDao;
 
     @Override
     @Transactional
@@ -50,7 +54,16 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Override
     @Transactional
     public ProductCategoryExection deleteProductCategory(long productCategoryId, long shopId) throws ProductCategoryOperationException {
-        // TODO 将此类别下的商品里的类别id置空
+        // 解除tb_product里的商品与该productCategoryId的关联
+        try {
+            int effectedNum = productDao.updateProductCategoryToNull(productCategoryId);
+            if (effectedNum < 0) {
+                throw  new RuntimeException("商品类别更新失败");
+            }
+        } catch (Exception e) {
+            throw  new RuntimeException("delete ProductCategory error:" + e.getMessage());
+        }
+        // 删除productCategory
         try {
             int effectedNum = productCategoryDao.deleteProductCategory(productCategoryId,shopId);
             if (effectedNum <= 0) {
