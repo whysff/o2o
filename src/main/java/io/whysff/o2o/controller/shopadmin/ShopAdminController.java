@@ -38,4 +38,10 @@ public class ShopAdminController {
         // 转发至商品添加编辑界面
         return "shop/productoperation";
     }
+
+    @RequestMapping("/productmanagement")
+    public String productManagement() {
+        // 转发至商品管理页面
+        return "shop/productmanagement";
+    }
 }
