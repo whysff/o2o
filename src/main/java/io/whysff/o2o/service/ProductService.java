@@ -13,8 +13,17 @@ import java.util.List;
  */
 public interface ProductService {
 
+
     /**
-     * 插入商品
+     * 通过商品Id查询唯一的商品信息
+     *
+     * @param productId
+     * @return
+     */
+    Product getProductById(long productId);
+
+    /**
+     * 添加商品信息以及图片处理
      *
      * @param product            商品实体类
      * @param thumbnail          缩略图
@@ -24,6 +33,18 @@ public interface ProductService {
      * @return
      * @throws ProductOperationException
      */
-    ProductExecution addProduct(Product product, ImageHolder thumbnail, List<ImageHolder> productImgHolderList) throws ProductOperationException;
+    ProductExecution addProduct(Product product, ImageHolder thumbnail, List<ImageHolder> productImgHolderList)
+            throws ProductOperationException;
 
+    /**
+     * 修改商品信息以及图片处理
+     *
+     * @param product
+     * @param thumbnail
+     * @param productImgHolderList
+     * @return
+     * @throws ProductOperationException
+     */
+    ProductExecution modifyProduct(Product product, ImageHolder thumbnail, List<ImageHolder> productImgHolderList)
+            throws ProductOperationException;
 }
