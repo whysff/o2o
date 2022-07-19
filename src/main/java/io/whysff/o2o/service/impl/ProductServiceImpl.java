@@ -91,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
-     * 批量添加图片
+     * 批量添加图片（商品详情图）
      *
      * @param product
      * @param productImgHolderList
