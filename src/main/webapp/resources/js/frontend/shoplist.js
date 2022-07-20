@@ -13,10 +13,10 @@ $(function() {
 	// 从地址栏URL里尝试获取parent shop category id.
 	var parentId = getQueryString('parentId');
 	// 是否选择了子类
-	var selectedParent = false;
-	if (parentId){
-		selectedParent = true;
-	}
+	// var selectedParent = false;
+	// if (parentId){
+	// 	selectedParent = true;
+	// }
 	var areaId = '';
 	var shopCategoryId = '';
 	var shopName = '';
