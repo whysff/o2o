@@ -20,7 +20,7 @@ $(function() {
 			$(".swiper-container").swiper({
 				autoplay : 3000,
 				//用户对轮播图进行操作时，是否自动停止autoplay
-				autoplayDisableOnInteraction : false
+				autoplayDisableOnInteraction : true
 			});
 			//获取后台传递过来的大类列表
 			var shopCategoryList = data.shopCategoryList;
