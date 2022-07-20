@@ -3,7 +3,7 @@ $(function() {
 	// 分页允许返回的最大条数，超过此数则禁止访问后台
 	var maxItems = 999;
 	// 一页返回的最大条数
-	var pageSize = 3;
+	var pageSize = 2;
 	// 获取店铺列表的URL
 	var listUrl = '/o2o/frontend/listshops';
 	// 获取店铺类别列表以及区域列表的URL
