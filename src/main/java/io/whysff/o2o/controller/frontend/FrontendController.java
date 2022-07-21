@@ -41,4 +41,14 @@ public class FrontendController {
     private String shopDetail() {
         return "frontend/shopdetail";
     }
+
+    /**
+     * 商品详情页路由
+     *
+     * @return
+     */
+    @GetMapping("/productdetail")
+    private String productDetail() {
+        return "frontend/productdetail";
+    }
 }
