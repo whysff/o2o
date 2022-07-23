@@ -7,7 +7,15 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
     <!-- 配置整合mybatis过程 -->
     <!-- 1.配置数据库相关参数properties的属性：${url} -->
-    <context:property-placeholder location="classpath:druid.properties"/>
+<!--    <context:property-placeholder location="classpath:druid.properties"/>关键信息加密后需要替换-->
+    <bean class="io.whysff.o2o.util.EncryptPropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:druid.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8" />
+    </bean>
 
     <!-- 2.配置数据库连接池(选用druid) -->
     <bean id="abstractDataSource" abstract="true" class="com.alibaba.druid.pool.DruidDataSource"
