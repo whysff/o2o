@@ -80,6 +80,7 @@ public class ShopManagementController {
             shopCondition.setOwner(user);
             ShopExecution se = shopService.getShopList(shopCondition, 0, 100);
             modelMap.put("shopList",se.getShopList());
+            request.getSession().setAttribute("shopList", se.getShopList());
             modelMap.put("user", user);
             modelMap.put("success", true);
         } catch (Exception e) {
@@ -170,7 +171,7 @@ public class ShopManagementController {
         return modelMap;
     }
 
-    @GetMapping("getshopinitinfo")
+    @GetMapping("/getshopinitinfo")
     @ResponseBody
     private Map<String, Object> getShopInitInfo() {
         Map<String, Object> modelMap = new HashMap<>();
