@@ -5,7 +5,7 @@
     <!-- logger.trace("msg") logger.debug... -->
     <property name="log.level" value="debug" />
     <property name="log.maxHistory" value="30" />
-    <property name="log.filePath" value="D:/log/logs/webapps" />
+    <property name="log.filePath" value="${catalina.base}/logs/webapps" />
     <property name="log.pattern"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n" />
     <!-- 控制台设置 -->

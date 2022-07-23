@@ -1,7 +1,6 @@
 package io.whysff.o2o.controller.shopadmin;
 
-import io.whysff.o2o.dao.ProductCategoryDao;
-import io.whysff.o2o.dto.ProductCategoryExection;
+import io.whysff.o2o.dto.ProductCategoryExecution;
 import io.whysff.o2o.dto.Result;
 import io.whysff.o2o.entity.ProductCategory;
 import io.whysff.o2o.entity.Shop;
@@ -52,7 +51,7 @@ public class ProductCategoryManagementController {
         }
         if (productCategoryList != null && productCategoryList.size() > 0) {
             try {
-                ProductCategoryExection pe = productCategoryService.batchAddProductCategory(productCategoryList);
+                ProductCategoryExecution pe = productCategoryService.batchAddProductCategory(productCategoryList);
                 if (pe.getState() == ProductCategoryStateEnum.SUCCESS.getState()) {
                     modelMap.put("success", true);
                 } else {
@@ -78,7 +77,7 @@ public class ProductCategoryManagementController {
         if (productCategoryId != null && productCategoryId > 0) {
             try {
                 Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
-                ProductCategoryExection pe = productCategoryService.deleteProductCategory(productCategoryId, currentShop.getShopId());
+                ProductCategoryExecution pe = productCategoryService.deleteProductCategory(productCategoryId, currentShop.getShopId());
                 if (pe.getState() == ProductCategoryStateEnum.SUCCESS.getState()) {
                     modelMap.put("success", true);
                 } else {

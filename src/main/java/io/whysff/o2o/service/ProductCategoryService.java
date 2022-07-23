@@ -1,6 +1,6 @@
 package io.whysff.o2o.service;
 
-import io.whysff.o2o.dto.ProductCategoryExection;
+import io.whysff.o2o.dto.ProductCategoryExecution;
 import io.whysff.o2o.entity.ProductCategory;
 import io.whysff.o2o.exceptions.ProductCategoryOperationException;
 
@@ -27,7 +27,7 @@ public interface ProductCategoryService {
      * @return
      * @throws ProductCategoryOperationException
      */
-    ProductCategoryExection batchAddProductCategory(List<ProductCategory> productCategoryList)
+    ProductCategoryExecution batchAddProductCategory(List<ProductCategory> productCategoryList)
             throws ProductCategoryOperationException;
 
     /**
@@ -38,6 +38,6 @@ public interface ProductCategoryService {
      * @return
      * @throws ProductCategoryOperationException
      */
-    ProductCategoryExection deleteProductCategory(long productCategoryId, long shopId)
+    ProductCategoryExecution deleteProductCategory(long productCategoryId, long shopId)
             throws ProductCategoryOperationException;
 }

@@ -9,7 +9,7 @@ import java.util.List;
  * @author lxstart  Email:liuxuan1021@126.com
  * @create 2022/07/15
  */
-public class ProductCategoryExection {
+public class ProductCategoryExecution {
 
     // 结果状态
     private int state;
@@ -20,18 +20,18 @@ public class ProductCategoryExection {
     // 封装ProductCategory
     private List<ProductCategory> productCategoryList;
 
-    public ProductCategoryExection() {
+    public ProductCategoryExecution() {
     }
 
     // 操作失败的时候使用的构造器
-    public ProductCategoryExection(ProductCategoryStateEnum stateEnum) {
+    public ProductCategoryExecution(ProductCategoryStateEnum stateEnum) {
         this.state = stateEnum.getState();
         this.stateInfo = stateEnum.getStateInfo();
     }
 
     // 操作成功的时候使用的构造器
 
-    public ProductCategoryExection(ProductCategoryStateEnum stateEnum, List<ProductCategory> productCategoryList) {
+    public ProductCategoryExecution(ProductCategoryStateEnum stateEnum, List<ProductCategory> productCategoryList) {
         this.state = stateEnum.getState();
         this.stateInfo = stateEnum.getStateInfo();
         this.productCategoryList = productCategoryList;
