@@ -74,11 +74,7 @@ public class ShopManagementController {
     @ResponseBody
     private Map<String, Object> getShopList(HttpServletRequest request) {
         Map<String, Object> modelMap = new HashMap<>();// 定义map接收返回值
-        PersonInfo user = new PersonInfo();
-        user.setUserId(1L);// TODO
-        user.setName("李明");
-        request.getSession().setAttribute("user",user);
-        user = (PersonInfo)request.getSession().getAttribute("user");
+        PersonInfo user = (PersonInfo) request.getSession().getAttribute("user");
         try {
             Shop shopCondition = new Shop();
             shopCondition.setOwner(user);
