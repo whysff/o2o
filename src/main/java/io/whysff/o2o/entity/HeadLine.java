@@ -1,6 +1,8 @@
 package io.whysff.o2o.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -9,6 +11,8 @@ import java.util.Date;
  * @create 2022/07/12
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class HeadLine {
     // 主键ID
     private Long lineId;
@@ -26,18 +30,4 @@ public class HeadLine {
     private Date createTime;
     // 最近一次的更新时间
     private Date lastEditTime;
-
-    public HeadLine() {
-    }
-
-    public HeadLine(Long lineId, String lineName, String lineLink, String lineImg, Integer priority, Integer enableStatus, Date createTime, Date lastEditTime) {
-        this.lineId = lineId;
-        this.lineName = lineName;
-        this.lineLink = lineLink;
-        this.lineImg = lineImg;
-        this.priority = priority;
-        this.enableStatus = enableStatus;
-        this.createTime = createTime;
-        this.lastEditTime = lastEditTime;
-    }
 }

@@ -1,6 +1,8 @@
 package io.whysff.o2o.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -8,7 +10,8 @@ import java.util.Date;
  * @author lxstart  Email:liuxuan1021@126.com
  * @create 2022/07/12
  */
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Area {
     // ID
@@ -21,15 +24,4 @@ public class Area {
     private Date createTime;
     // 更新时间
     private Date lastEditTime;
-
-    public Area() {
-    }
-
-    public Area(Integer areaId, String areaName, Integer priority, Date createTime, Date lastEditTime) {
-        this.areaId = areaId;
-        this.areaName = areaName;
-        this.priority = priority;
-        this.createTime = createTime;
-        this.lastEditTime = lastEditTime;
-    }
 }

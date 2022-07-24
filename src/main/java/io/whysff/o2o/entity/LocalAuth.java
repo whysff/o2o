@@ -1,6 +1,8 @@
 package io.whysff.o2o.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -9,6 +11,8 @@ import java.util.Date;
  * @create 2022/07/12
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class LocalAuth {
     // 主键ID
     private Long localAuthId;
@@ -22,16 +26,4 @@ public class LocalAuth {
     private Date lastEditTime;
     // 个人信息，关系为一一对应
     private PersonInfo personInfo;
-
-    public LocalAuth() {
-    }
-
-    public LocalAuth(Long localAuthId, String username, String password, Date createTime, Date lastEditTime, PersonInfo personInfo) {
-        this.localAuthId = localAuthId;
-        this.username = username;
-        this.password = password;
-        this.createTime = createTime;
-        this.lastEditTime = lastEditTime;
-        this.personInfo = personInfo;
-    }
 }

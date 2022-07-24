@@ -89,7 +89,7 @@ $(function() {
 				product.productName = $('#product-name').val();
 				product.productDesc = $('#product-desc').val();
 				product.priority = $('#priority').val();
-				// product.point = $('#point').val();积分2.0再加
+				product.point = $('#point').val();
 				product.normalPrice = $('#normal-price').val();
 				product.promotionPrice = $('#promotion-price').val();
 				// 获取选定的商品类别值

@@ -1,6 +1,8 @@
 package io.whysff.o2o.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -9,6 +11,8 @@ import java.util.Date;
  * @create 2022/07/12
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PersonInfo {
     // 主键ID
     private Long userId;
@@ -28,19 +32,4 @@ public class PersonInfo {
     private Date createTime;
     // 最近一次的更新时间
     private Date lastEditTime;
-
-    public PersonInfo() {
-    }
-
-    public PersonInfo(Long userId, String name, String profileImg, String email, String gender, Integer enableStatus, Integer userType, Date createTime, Date lastEditTime) {
-        this.userId = userId;
-        this.name = name;
-        this.profileImg = profileImg;
-        this.email = email;
-        this.gender = gender;
-        this.enableStatus = enableStatus;
-        this.userType = userType;
-        this.createTime = createTime;
-        this.lastEditTime = lastEditTime;
-    }
 }

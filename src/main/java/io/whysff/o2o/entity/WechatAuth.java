@@ -1,6 +1,8 @@
 package io.whysff.o2o.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -9,6 +11,8 @@ import java.util.Date;
  * @create 2022/07/12
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class WechatAuth {
     // 主键ID
     private Long wechatAuthId;
@@ -18,14 +22,4 @@ public class WechatAuth {
     private Date createTime;
     // 用户信息
     private PersonInfo personInfo;
-
-    public WechatAuth() {
-    }
-
-    public WechatAuth(Long wechatAuthId, String openId, Date createTime, PersonInfo personInfo) {
-        this.wechatAuthId = wechatAuthId;
-        this.openId = openId;
-        this.createTime = createTime;
-        this.personInfo = personInfo;
-    }
 }
